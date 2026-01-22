@@ -29,7 +29,7 @@ class TestPet:
             assert response.text == 'Pet not found', 'Текст ошибки не совпал с ожидаемым'
 
     @allure.title('Попытка получить информацию о несуществующем питомце')
-    def test_get_existent_pet(self):
+    def test_get_nonexistent_pet(self):
         with allure.step('Отправка запроса на получение информации о несуществующем питомце'):
             response = requests.get(url= f'{BASE_URL}/pet/9999')
         with allure.step('Проверка статуса ответа'):
