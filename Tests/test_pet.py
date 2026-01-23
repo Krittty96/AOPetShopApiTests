@@ -89,23 +89,9 @@ class TestPet:
                 jsonschema.validate(response.json, PET_SCHEMA)
 
             with allure.step('Проверка параметров питомца в ответе'):
-                assert response.json['id'] == payload['id'], 'id питомца не совпадает с ожидаемым'
-                assert response.json['name'] == payload['name'], 'name питомца не совпадает с ожидаемым'
-                assert response.json['category']['id'] == payload['category'][
-                    'id'], 'id category не совпадает с ожидаемым'
-                assert response.json['category']['name'] == payload['category'][
-                    'name'], 'name category не совпадает с ожидаемым'
-                assert response.json['photoUrls'] == payload['photoUrls'], 'photoUrls не совпадает с ожидаемым'
-                assert response.json['tags'][0]['id'] == payload['tags'][0]['id'], 'Id тега не совпадает с ожидаемым'
-                assert response.json['tags'][0]['name'] == payload['tags'][0][
-                    'name'], 'Наименования тега не совпадает с ожидаемым'
-                assert response.json['status'] == payload['status'], 'status питомца не совпадает с ожидаемым'
-                # Второй вариант реализации проверки значений внутри массива "tags":
-                if len(response.json['tags']) == len(payload['tags']):
-                    for i in range(len(response.json['tags'])):
-                        if response.json['tags'][i]['id'] != payload['tags'][i]['id']:
-                            print('Id тега не совпадает с ожидаемым')
-                        if response.json['tags'][i]['name'] != payload['tags'][i]['name']:
-                            print('Name тега не совпадает с ожидаемым')
-                else:
-                    print('Содержимое тега не совпадает с ожидаемым')
+                assert response.json['id'] == payload['id'], 'Id питомца не совпадает с ожидаемым'
+                assert response.json['name'] == payload['name'], 'Имя питомца не совпадает с ожидаемым'
+                assert response.json['category'] == payload['category'], 'Категория не совпадает с ожидаемой'
+                assert response.json['photoUrls'] == payload['photoUrls'], 'PhotoUrls не совпадает с ожидаемым'
+                assert response.json['tags'] == payload['tags'], 'Тег не совпадает с ожидаемым'
+                assert response.json['status'] == payload['status'], 'Cтатус питомца не совпадает с ожидаемым'
