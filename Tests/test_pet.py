@@ -156,8 +156,8 @@ class TestPet:
         with allure.step(f'Отправка запроса на получение питомцев по статусу {status}'):
             response = requests.get(f'{BASE_URL}/pet/findByStatus', params={'status': status})
         with allure.step('Проверка статуса ответа и формата данных'):
-            assert response.status_code == expected_status_code, 'Код ответа не совпал с ожидаемым'
+            assert response.status_code == expected_status_code, 'Код ответа не совпадает с ожидаемым'
             if response.status_code == 200:
-                assert isinstance(response.json(), list), 'Формат данных не совпал с ожидаемым'
+                assert isinstance(response.json(), list), 'Формат данных не совпадает с ожидаемым'
             elif response.status_code == 400:
-                assert isinstance(response.json(), dict), 'Формат данных не совпал с ожидаемым'
+                assert isinstance(response.json(), dict), 'Формат данных не совпадает с ожидаемым'
