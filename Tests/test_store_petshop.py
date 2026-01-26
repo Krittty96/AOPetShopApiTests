@@ -68,7 +68,13 @@ class TestStorePetShop:
             assert response.status_code == 200 , 'Код ответа не совпадает с ожидаемым'
             jsonschema.validate(response.json(), INVENTORY_PETSHOP_SCHEMA)
         with allure.step('Проверка содержимого формата данных инвентаря'):
-            assert isinstance(response.json(), dict)
+            if 'approved' in response.json():
+                assert isinstance(response.json()['approved'], int)
+            elif 'delivered' in response.json():
+                assert isinstance(response.json()['delivered'], int)
+            elif 'placed' in response.json():
+                assert isinstance(response.json()['placed'], int)
+
 
 
 

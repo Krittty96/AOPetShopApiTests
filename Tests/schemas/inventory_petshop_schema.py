@@ -4,8 +4,8 @@ INVENTORY_PETSHOP_SCHEMA = {
         {
         'approved': {'type': 'integer'},
         'delivered': {'type': 'integer'},
+        'placed': {'type': 'integer'}
         },
-    'required': ['approved'],
-    'additionalProperties': True
+    'additionalProperties': False
 
 }
