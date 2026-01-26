@@ -53,7 +53,7 @@ class TestStorePetShop:
 
     @allure.title("Попытка получить информацию о несуществующем заказе")
     def test_get_nonexistent_order(self):
-        with allure.step('Отправка запроса на получение информации'):
+        with allure.step('Отправка запроса на получение информации о заказе'):
             response = requests.get(url = f'{BASE_URL}/store/order/9999')
         with allure.step('Проверка статуса ответа'):
             assert response.status_code == 404 , 'Код ответа не совпал с ожидаемым'
@@ -70,9 +70,9 @@ class TestStorePetShop:
         with allure.step('Проверка содержимого формата данных инвентаря'):
             if 'approved' in response.json():
                 assert isinstance(response.json()['approved'], int)
-            elif 'delivered' in response.json():
+            if 'delivered' in response.json():
                 assert isinstance(response.json()['delivered'], int)
-            elif 'placed' in response.json():
+            if 'placed' in response.json():
                 assert isinstance(response.json()['placed'], int)
 
 
