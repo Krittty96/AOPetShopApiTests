@@ -66,14 +66,7 @@ class TestStorePetShop:
             response = requests.get(url = f'{BASE_URL}/store/inventory')
         with allure.step('Проверка статуса ответа'):
             assert response.status_code == 200 , 'Код ответа не совпадает с ожидаемым'
-            jsonschema.validate(response.json(), INVENTORY_PETSHOP_SCHEMA)
-        with allure.step('Проверка содержимого формата данных инвентаря'):
-            if 'approved' in response.json():
-                assert isinstance(response.json()['approved'], int)
-            if 'delivered' in response.json():
-                assert isinstance(response.json()['delivered'], int)
-            if 'placed' in response.json():
-                assert isinstance(response.json()['placed'], int)
+            jsonschema.validate(response.json(), INVENTORY_PETSHOP_SCHEMA) , 'Формат данных не совпал с ожидаемым'
 
 
 
